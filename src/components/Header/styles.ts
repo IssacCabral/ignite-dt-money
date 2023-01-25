@@ -12,7 +12,7 @@ export const Content = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 2rem 1rem 12rem;
+  padding: 2rem 1rem 9rem;
 
   button {
     font-size: 1rem;
