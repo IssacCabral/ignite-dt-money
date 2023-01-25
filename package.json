@@ -12,6 +12,7 @@
     "@types/react-modal": "^3.13.1",
     "axios": "^1.2.4",
     "miragejs": "^0.1.47",
+    "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
