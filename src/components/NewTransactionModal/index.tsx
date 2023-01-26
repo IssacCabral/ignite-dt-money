@@ -15,7 +15,6 @@ const NewTransactionModal = (props: NewTransactionModalProps) => {
   const [title, setTitle] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [category, setCategory] = useState<string>("");
-
   const [type, setType] = useState<string>("deposit");
 
   function handleCreateNewTransaction(event: FormEvent) {
@@ -25,6 +24,7 @@ const NewTransactionModal = (props: NewTransactionModalProps) => {
       title,
       amount,
       category,
+      type,
     };
 
     api.post("/transactions", data).then((result) => console.log(result.data));
