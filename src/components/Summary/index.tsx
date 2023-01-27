@@ -8,7 +8,23 @@ import { TransactionsContext } from "../../TransactionsContext";
 const Summary = () => {
   const { transactions } = useContext(TransactionsContext);
 
-  console.log(transactions);
+  const summary = transactions.reduce(
+    (accumulated, transaction) => {
+      if (transaction.type === "deposit") {
+        accumulated.deposits += transaction.amount;
+        accumulated.total += transaction.amount;
+      } else {
+        accumulated.withdraws += transaction.amount;
+        accumulated.total -= transaction.amount;
+      }
+      return accumulated;
+    },
+    {
+      deposits: 0,
+      withdraws: 0,
+      total: 0,
+    }
+  );
 
   return (
     <Container>
@@ -17,7 +33,12 @@ const Summary = () => {
           <p>Entradas</p>
           <img src={incomeImg} alt="Entradas" />
         </header>
-        <strong>R$1000,00</strong>
+        <strong>
+          {new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(summary.deposits)}
+        </strong>
       </div>
 
       <div>
@@ -25,7 +46,13 @@ const Summary = () => {
           <p>Saídas</p>
           <img src={outcomeImg} alt="Saídas" />
         </header>
-        <strong>- R$500,00</strong>
+        <strong>
+          -{" "}
+          {new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(summary.withdraws)}
+        </strong>
       </div>
 
       <div className="highlight-background">
@@ -33,7 +60,12 @@ const Summary = () => {
           <p>Total</p>
           <img src={totalImg} alt="Total" />
         </header>
-        <strong>R$500,00</strong>
+        <strong>
+          {new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(summary.total)}
+        </strong>
       </div>
     </Container>
   );
